@@ -14,15 +14,15 @@ export default {
     const textBody = ref([""]);
     const pointer = ref(0);
 
-    const handleKeyPress = (ctx, key, width, height) => {
+    const handleKeyPress = (ctx, event, width, height) => {
       const pointerValue = pointer.value;
 
-      console.log(pointer.value, textBody.value);
+      const key = event.key;
 
       switch(key) {
         case keys.BACKSPACE:
           if (textBody.value[pointerValue].length === 0 && textBody.value.length > 1) {
-            textBody.value.pop();
+            textBody.value.splice(pointer.value, 1);
             pointer.value -= 1;
           } else {
             textBody.value[pointerValue] = textBody.value[pointerValue].slice(0, textBody.value[pointerValue].length-1);
@@ -32,9 +32,27 @@ export default {
           pointer.value += 1;
           textBody.value[pointer.value] = "";
           break;
+        case keys.ARROWUP:
+          if (pointerValue >= 1) {
+            pointer.value -= 1;
+          }
+          break;
+        case keys.SPACE:
+          event.preventDefault();
+          textBody.value[pointerValue] += key;
+          break;
+        case keys.ARROWDOWN:
+          if (pointerValue < textBody.value.length) {
+            pointer.value += 1;
+          }
+          break;
         default:
           if (key.length !== 1){
             return;
+          }
+
+          if (ctx.measureText(textBody.value[pointerValue]).width + 10 >= width - 25) {
+            pointer.value += 1;
           }
 
           if (!textBody.value[pointerValue]) {
@@ -63,8 +81,7 @@ export default {
       ctx.fillText(textBody.value, 10, 20);
 
       document.addEventListener("keydown", (event) => {
-        event.preventDefault();
-        handleKeyPress(ctx, event.key, canvas.width, canvas.height);
+        handleKeyPress(ctx, event, canvas.width, canvas.height);
       })
     })
   }

@@ -10,6 +10,9 @@ export const keys = {
   TAB: "Tab",
   ENTER: "Enter",
   BACKSPACE: "Backspace",
+  ARROWUP: "ArrowUp",
+  ARROWDOWN: "ArrowDown",
+  SPACE: " ",
 }
 
 
