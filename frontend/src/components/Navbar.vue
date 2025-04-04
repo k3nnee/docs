@@ -7,8 +7,7 @@
 
 <script>
 export default {
-  name: "Navbar",
-
+  name: 'Navbar',
 }
 </script>
 
@@ -22,14 +21,14 @@ export default {
   gap: 10px;
 }
 
-.nav-item{
+.nav-item {
   text-decoration: none;
-  color: #2B2A2A;
+  color: #2b2a2a;
 }
 .nav-item:hover {
   color: black;
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s;
 }
 
 .router-link-active {

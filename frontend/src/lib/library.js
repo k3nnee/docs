@@ -1,5 +1,5 @@
 export class DocumentInformation {
-  constructor(title, author, createdAt, textBody = [""]) {
+  constructor(title, author, createdAt, textBody = ['']) {
     this.title = title
     this.author = author
     this.createdAt = createdAt
@@ -8,12 +8,10 @@ export class DocumentInformation {
 }
 
 export const keys = {
-  TAB: "Tab",
-  ENTER: "Enter",
-  BACKSPACE: "Backspace",
-  ARROWUP: "ArrowUp",
-  ARROWDOWN: "ArrowDown",
-  SPACE: " ",
+  TAB: 'Tab',
+  ENTER: 'Enter',
+  BACKSPACE: 'Backspace',
+  ARROWUP: 'ArrowUp',
+  ARROWDOWN: 'ArrowDown',
+  SPACE: ' ',
 }
-
-

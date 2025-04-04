@@ -1,12 +1,8 @@
-<template>
-  About page
-</template>
+<template>About page</template>
 
 <script>
-
 export default {
-  name: "About",
-  setup() {
-  }
+  name: 'About',
+  setup() {},
 }
 </script>
