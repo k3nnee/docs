@@ -1,8 +1,9 @@
 export class DocumentInformation {
-  constructor(title, author, createdAt) {
+  constructor(title, author, createdAt, textBody = [""]) {
     this.title = title
     this.author = author
     this.createdAt = createdAt
+    this.textBody = textBody
   }
 }
 

@@ -8,12 +8,12 @@
 
     <!-- Metadata -->
     <div>
-      <div class="text-l"> {{this.metaData.title}} </div>
+      <div class="text-l"> {{currentDocument.title}} </div>
 
       <div class="belt-data-container">
         <div class="text-sm">
-          <p class="m-0"> {{this.metaData.author}} </p>
-          <p class="m-0"> {{this.metaData.createdAt}} </p>
+          <p class="m-0"> {{currentDocument.author}} </p>
+          <p class="m-0"> {{currentDocument.createdAt}} </p>
         </div>
       </div>
     </div>
@@ -28,17 +28,11 @@
 </template>
 
 <script>
-import {DocumentInformation} from "@/lib/library.js";
 import {ref} from "vue";
+import {currentDocument} from "../lib/state.js";
 
 export default {
   name: "Toolbelt",
-  props: {
-    metaData: {
-      type: DocumentInformation,
-        required: true
-    },
-  },
   setup() {
     const isSidebarDisplayed = ref(false);
 
@@ -48,7 +42,8 @@ export default {
 
     return {
       isSidebarDisplayed,
-      toggleSidebar
+      toggleSidebar,
+      currentDocument
     }
   }
 }

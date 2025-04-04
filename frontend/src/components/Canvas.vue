@@ -7,12 +7,16 @@
 <script>
 import {onMounted, ref} from "vue";
 import {keys} from "@/lib/library.js";
+import {textBody, pointer} from "@/lib/state.js";
 
 export default {
   name: "Canvas",
   setup() {
-    const textBody = ref([""]);
-    const pointer = ref(0);
+    const renderDocument = (ctx) => {
+      textBody.value.forEach((text, index) => {
+        ctx.fillText(text, 10, (index+1) * 20);
+      })
+    }
 
     const handleKeyPress = (ctx, event, width, height) => {
       const pointerValue = pointer.value;
@@ -33,6 +37,7 @@ export default {
           textBody.value[pointer.value] = "";
           break;
         case keys.ARROWUP:
+          event.preventDefault();
           if (pointerValue >= 1) {
             pointer.value -= 1;
           }
@@ -42,6 +47,7 @@ export default {
           textBody.value[pointerValue] += key;
           break;
         case keys.ARROWDOWN:
+          event.preventDefault();
           if (pointerValue < textBody.value.length) {
             pointer.value += 1;
           }
@@ -63,9 +69,7 @@ export default {
       }
 
       ctx.clearRect(0, 0,  width, height);
-      textBody.value.forEach((text, index) => {
-        ctx.fillText(text, 10, (index+1) * 20);
-      })
+      renderDocument(ctx);
     }
 
     onMounted(() => {
@@ -78,7 +82,7 @@ export default {
       canvas.height = 1000 * scale;
 
       ctx.font = "15px Arial";
-      ctx.fillText(textBody.value, 10, 20);
+      renderDocument(ctx);
 
       document.addEventListener("keydown", (event) => {
         handleKeyPress(ctx, event, canvas.width, canvas.height);

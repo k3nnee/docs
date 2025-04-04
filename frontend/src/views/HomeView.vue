@@ -1,28 +1,23 @@
 <template>
-  <div class="container" v-if="metaData !== null">
-    <Toolbelt :meta-data="metaData" />
-
+  <div class="container" v-if="currentDocument">
+    <Toolbelt />
     <Canvas />
   </div>
 </template>
 
 <script>
 import Toolbelt from "@/components/Toolbelt.vue";
-import {onMounted, ref} from "vue";
-import {DocumentInformation} from "@/lib/library.js";
 import Canvas from "@/components/Canvas.vue";
+import {currentDocument} from "@/lib/state.js";
 
 export default {
   name: "HomeView",
   components: {Canvas, Toolbelt},
   setup() {
-    const metaData = ref(null);
-    onMounted(() => {
-      metaData.value = new DocumentInformation("Placeholder title", "Kenny Tang", new Date().toString());
-    })
+    console.log(currentDocument);
 
     return {
-      metaData
+      currentDocument
     }
   }
 }
